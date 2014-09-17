@@ -54,6 +54,30 @@
 
 	<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
 	<script type="text/javascript" src="js/bootstrap-datepicker.init.js" ></script>
+
+	<script type="text/javascript">
+	$(function(){
+
+	var _startDate = new Date();
+	var _endDate = new Date(_startDate.getTime() + (24 * 60 * 60 * 1000)); //plus 1 day
+
+	$('#datepicker1').datepicker({
+	  format: 'mm/dd/yyyy',
+	  autoclose: true,
+	  startDate: _endDate,
+	  todayHighlight: false
+	}).on('changeDate', function(e){
+		console.log( "date: " + $('#datepicker1').val() );
+	    //if current date is bigger than start date
+		    if (e.date.valueOf() < _startDate.valueOf()){
+		         alert(e.date.toString()); //called when date is changed
+		    }
+	    });	
+	});
+
+	</script>
+
+
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.css">
 </body>
 </html>
